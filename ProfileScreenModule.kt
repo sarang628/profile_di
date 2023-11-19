@@ -18,7 +18,7 @@ fun ProfileScreen(
     profileImageUrl: String,
     imageServerUrl: String,
     onSetting: () -> Unit,
-    navBackStackEntry: NavBackStackEntry
+    navBackStackEntry: NavBackStackEntry?
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
@@ -65,8 +65,8 @@ fun ProfileScreen(
         galleryScreen = { onNext, onClose ->
             GalleryNavHost(onNext = onNext, onClose = { onClose.invoke() })
         },
-        isMyProfile = navBackStackEntry.arguments?.getString("id")?.toInt() == -1,
-        id = navBackStackEntry.arguments?.getString("id")?.toInt(),
+        isMyProfile = navBackStackEntry == null,
+        id = navBackStackEntry?.arguments?.getString("id")?.toInt(),
         profileImageServerUrl = profileImageUrl
     )
 }
