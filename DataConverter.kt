@@ -3,8 +3,10 @@ package com.sryang.myapplication.di.profile_di
 import com.sarang.base_feed.uistate.FeedBottomUIState
 import com.sarang.base_feed.uistate.FeedTopUIState
 import com.sarang.base_feed.uistate.FeedUiState
+import com.sarang.profile.compose.follow.Follow
 import com.sarang.profile.uistate.Feed
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
+import com.sryang.torang_repository.data.remote.response.RemoteFollower
 
 fun List<Feed>.toFeedUiState(): ArrayList<FeedUiState> {
     return ArrayList(this.stream().map { it.toFeedUiState() }.toList())
@@ -68,6 +70,17 @@ fun ReviewAndImageEntity.toFeed(): Feed {
         isFavorite = this.favorite != null
     )
 }
+
 fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
     return this.stream().map { it.toFeed() }.toList()
+}
+
+fun RemoteFollower.toFollow(): Follow {
+    return Follow(
+        url = this.profilePicUrl,
+        name = this.userName,
+        nickname = this.userName,
+        id = this.follwerId,
+        isFollow = false
+    )
 }
