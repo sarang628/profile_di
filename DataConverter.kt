@@ -5,8 +5,10 @@ import com.sarang.base_feed.uistate.FeedTopUIState
 import com.sarang.base_feed.uistate.FeedUiState
 import com.sarang.profile.compose.follow.Follow
 import com.sarang.profile.uistate.Feed
+import com.sarang.profile.viewmodel.FollowUiState
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
 import com.sryang.torang_repository.data.remote.response.RemoteFollower
+import com.sryang.torang_repository.data.remote.response.RemoteUser
 
 fun List<Feed>.toFeedUiState(): ArrayList<FeedUiState> {
     return ArrayList(this.stream().map { it.toFeedUiState() }.toList())
@@ -82,5 +84,13 @@ fun RemoteFollower.toFollow(): Follow {
         nickname = this.userName,
         id = this.follwerId,
         isFollow = false
+    )
+}
+fun RemoteUser.toFollowUiState(): FollowUiState {
+    return FollowUiState(
+        name = this.userName,
+        following = this.following,
+        follower = this.followers,
+        subscription = 0
     )
 }

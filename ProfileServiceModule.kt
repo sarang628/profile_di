@@ -4,6 +4,7 @@ import com.sarang.profile.compose.follow.Follow
 import com.sarang.profile.uistate.Feed
 import com.sarang.profile.uistate.ProfileUiState
 import com.sarang.profile.usecase.DeleteUseCase
+import com.sarang.profile.usecase.FollowUseCase
 import com.sarang.profile.usecase.GetFollowerUseCase
 import com.sarang.profile.usecase.GetFollowingUseCase
 import com.sarang.profile.usecase.GetProfileUseCase
@@ -45,7 +46,9 @@ class ProfileServiceModule {
                     following = result.following,
                     follower = result.followers,
                     name = result.userName,
-                    isLogin = true
+                    isLogin = true,
+                    id = 0,
+                    isFollow = result.follow == 1
                 )
             }
 
@@ -57,7 +60,8 @@ class ProfileServiceModule {
                     following = result.following,
                     follower = result.followers,
                     name = result.userName,
-                    isLogin = true
+                    isLogin = true,
+                    id = 0
                 )
             }
 
@@ -151,12 +155,14 @@ class ProfileServiceModule {
         }
     }
 
-    fun RemoteUser.toFollowUiState(): FollowUiState {
-        return FollowUiState(
-            name = this.userName,
-            following = this.following,
-            follower = this.followers,
-            subscription = 0
-        )
+    @Provides
+    fun ProvidesFollowUseCase(
+        followRepository: FollowRepository
+    ): FollowUseCase {
+        return object : FollowUseCase {
+            override suspend fun invoke(id: Int): Boolean {
+                return followRepository.follow(id)
+            }
+        }
     }
 }

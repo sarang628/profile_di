@@ -5,7 +5,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.profile.compose.edit.EditProfileScreen
-import com.sarang.torang.BuildConfig
+//import com.sarang.torang.BuildConfig
 import com.sryang.myapplication.di.profile_di.ProfileScreen
 
 @Composable
@@ -22,7 +22,7 @@ fun ProvideEditProfileImageScreen(navController: NavHostController) {
 fun ProvideEditProfileScreen(navController: NavHostController) {
     EditProfileScreen(
         onEditImage = { navController.navigate("EditProfileImage") },
-        profileImageServerUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL,
+        profileImageServerUrl = "",//BuildConfig.PROFILE_IMAGE_SERVER_URL,
         onBack = {
             navController.popBackStack()
         }
@@ -37,7 +37,7 @@ fun ProvideProfileScreen(
     ProfileScreen(
         onSetting = { navController.navigate("settings") },
         navBackStackEntry = navBackStackEntry,
-        profileImageUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL,
-        imageServerUrl = BuildConfig.REVIEW_IMAGE_SERVER_URL
+        profileImageUrl = "",//BuildConfig.PROFILE_IMAGE_SERVER_URL,
+        imageServerUrl = ""//BuildConfig.REVIEW_IMAGE_SERVER_URL
     )
 }
