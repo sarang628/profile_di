@@ -138,8 +138,8 @@ class ProfileServiceModule {
         followRepository: FollowRepository
     ): DeleteUseCase {
         return object : DeleteUseCase {
-            override fun invoke(id: Int): Boolean {
-                return false
+            override suspend fun invoke(id: Int): Boolean {
+                return followRepository.delete(id)
             }
         }
     }
