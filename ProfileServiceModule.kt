@@ -42,9 +42,9 @@ class ProfileServiceModule {
                 val result = profileRepository.loadProfile(id)
                 return ProfileUiState(
                     profileUrl = result.profilePicUrl,
-                    feedCount = result.reviewCount,
+                    feedCount = result.post,
                     following = result.following,
-                    follower = result.followers,
+                    follower = result.follower,
                     name = result.userName,
                     isLogin = true,
                     id = 0,
@@ -56,9 +56,9 @@ class ProfileServiceModule {
                 val result = profileRepository.loadProfileByToken()
                 return ProfileUiState(
                     profileUrl = result.profilePicUrl,
-                    feedCount = result.reviewCount,
+                    feedCount = result.post,
                     following = result.following,
-                    follower = result.followers,
+                    follower = result.follower,
                     name = result.userName,
                     isLogin = true,
                     id = 0

@@ -90,7 +90,7 @@ fun RemoteUser.toFollowUiState(): FollowUiState {
     return FollowUiState(
         name = this.userName,
         following = this.following,
-        follower = this.followers,
+        follower = this.follower,
         subscription = 0
     )
 }
