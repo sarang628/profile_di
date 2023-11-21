@@ -82,7 +82,7 @@ fun RemoteFollower.toFollow(): Follow {
         url = this.profilePicUrl,
         name = this.userName,
         nickname = this.userName,
-        id = this.follwerId,
+        id = this.followerId,
         isFollow = false
     )
 }
