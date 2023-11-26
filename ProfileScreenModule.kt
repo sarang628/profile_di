@@ -5,11 +5,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
-import com.sarang.base_feed.ui.Feeds
-import com.sarang.base_feed.uistate.FeedUiState
 import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.profile.compose.edit.ProfileNavHost
 import com.sarang.profile.viewmodel.ProfileViewModel
+import com.sryang.base.feed.compose.feed.Feeds
+import com.sryang.base.feed.uistate.FeedUiState
 
 
 @Composable
@@ -19,15 +19,15 @@ fun ProfileScreen(
     imageServerUrl: String,
     onSetting: () -> Unit,
     navBackStackEntry: NavBackStackEntry?
-) {
+)
+{
     val uiState by profileViewModel.uiState.collectAsState()
 
     ProfileNavHost(
         profileViewModel = profileViewModel,
         onSetting = onSetting,
         favorite = {
-            Feeds(
-                list = uiState.favoriteList?.toFeedUiState() ?: ArrayList(),
+            Feeds(list = ArrayList(),
                 onProfile = {},
                 onLike = {},
                 onComment = {},
@@ -41,13 +41,14 @@ fun ProfileScreen(
                 isRefreshing = false,
                 profileImageServerUrl = profileImageUrl,
                 imageServerUrl = imageServerUrl,
-                ratingBar = {}
-            )
+                ratingBar = {},
+                isLoaded = false,
+                isVisibleList = false,
+                isEmpty = false,
+                onBottom = {})
         },
         wantToGo = {
-            Feeds(
-                list = ArrayList<FeedUiState>().apply {
-                },
+            Feeds(list = ArrayList(),
                 onProfile = {},
                 onLike = {},
                 onComment = {},
@@ -59,8 +60,13 @@ fun ProfileScreen(
                 onImage = {},
                 onRefresh = { /*TODO*/ },
                 isRefreshing = false,
-                ratingBar = {}
-            )
+                ratingBar = {},
+                imageServerUrl = imageServerUrl,
+                profileImageServerUrl = profileImageUrl,
+                isEmpty = false,
+                isVisibleList = false,
+                isLoaded = false,
+                onBottom = {})
         },
         galleryScreen = { onNext, onClose ->
             GalleryNavHost(onNext = onNext, onClose = { onClose.invoke() })
