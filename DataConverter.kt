@@ -1,9 +1,9 @@
 package com.sryang.myapplication.di.profile_di
 
 
-import com.sarang.profile.compose.follow.Follow
-import com.sarang.profile.uistate.Feed
-import com.sarang.profile.viewmodel.FollowUiState
+import com.sryang.torang.compose.follow.Follow
+import com.sryang.torang.uistate.Feed
+import com.sryang.torang.viewmodel.FollowUiState
 import com.sryang.base.feed.uistate.FeedUiState
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
 import com.sryang.torang_repository.data.remote.response.RemoteFollower
