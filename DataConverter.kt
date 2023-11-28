@@ -3,21 +3,11 @@ package com.sryang.myapplication.di.profile_di
 
 import com.sryang.torang.compose.follow.Follow
 import com.sryang.torang.uistate.Feed
-import com.sryang.torang.uistate.FeedUiState
 import com.sryang.torang.viewmodel.FollowUiState
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
 import com.sryang.torang_repository.data.remote.response.RemoteFollower
 import com.sryang.torang_repository.data.remote.response.RemoteUser
 
-fun List<Feed>.toFeedUiState(): ArrayList<FeedUiState> {
-    return ArrayList(this.stream().map { it.toFeedUiState() }.toList())
-}
-
-fun Feed.toFeedUiState(): FeedUiState {
-    return FeedUiState(
-        list = ArrayList(), isLoaded = true, isRefreshing = false
-    )
-}
 
 fun ReviewAndImageEntity.toFeed(): Feed {
     return Feed(
