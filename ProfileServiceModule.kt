@@ -14,8 +14,6 @@ import com.sryang.torang.usecase.UnFollowUseCase
 import com.sryang.torang.viewmodel.FollowUiState
 import com.sryang.torang_repository.api.ApiProfile
 import com.sryang.torang_repository.data.dao.LoggedInUserDao
-import com.sryang.torang_repository.data.remote.response.RemoteFollower
-import com.sryang.torang_repository.data.remote.response.RemoteUser
 import com.sryang.torang_repository.di.repository.repository.impl.ProfileRepositoryImpl
 import com.sryang.torang_repository.repository.EditProfileRepository
 import com.sryang.torang_repository.repository.FollowRepository

@@ -3,26 +3,23 @@ package com.sryang.myapplication.di.profile_di
 
 import com.sryang.torang.compose.follow.Follow
 import com.sryang.torang.uistate.Feed
+import com.sryang.torang.uistate.FeedUiState
 import com.sryang.torang.viewmodel.FollowUiState
-import com.sryang.base.feed.uistate.FeedUiState
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
 import com.sryang.torang_repository.data.remote.response.RemoteFollower
 import com.sryang.torang_repository.data.remote.response.RemoteUser
 
-fun List<Feed>.toFeedUiState(): ArrayList<FeedUiState>
-{
+fun List<Feed>.toFeedUiState(): ArrayList<FeedUiState> {
     return ArrayList(this.stream().map { it.toFeedUiState() }.toList())
 }
 
-fun Feed.toFeedUiState(): FeedUiState
-{
+fun Feed.toFeedUiState(): FeedUiState {
     return FeedUiState(
-        reviews = ArrayList(), isLoaded = true, isRefreshing = false
+        list = ArrayList(), isLoaded = true, isRefreshing = false
     )
 }
 
-fun ReviewAndImageEntity.toFeed(): Feed
-{
+fun ReviewAndImageEntity.toFeed(): Feed {
     return Feed(
         this.review.reviewId,
         this.review.userId,
@@ -35,19 +32,17 @@ fun ReviewAndImageEntity.toFeed(): Feed
         this.review.likeAmount,
         this.review.commentAmount,
         this.review.createDate,
-        reviewImage = this.images.stream().map { it.pictureUrl }.toList(),
+        reviewImage = this.images.map { it.pictureUrl },
         isLike = this.like != null,
         isFavorite = this.favorite != null
     )
 }
 
-fun List<ReviewAndImageEntity>.toFeeds(): List<Feed>
-{
-    return this.stream().map { it.toFeed() }.toList()
+fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
+    return this.map { it.toFeed() }
 }
 
-fun RemoteFollower.toFollow(): Follow
-{
+fun RemoteFollower.toFollow(): Follow {
     return Follow(
         url = this.profilePicUrl,
         name = this.userName,
@@ -57,8 +52,7 @@ fun RemoteFollower.toFollow(): Follow
     )
 }
 
-fun RemoteUser.toFollowUiState(): FollowUiState
-{
+fun RemoteUser.toFollowUiState(): FollowUiState {
     return FollowUiState(
         name = this.userName, following = this.following, follower = this.follower, subscription = 0
     )

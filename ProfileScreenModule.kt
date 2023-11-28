@@ -6,10 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import com.sarang.instagralleryModule.GalleryNavHost
+import com.sryang.base.feed.compose.feed.Feeds
 import com.sryang.torang.compose.edit.ProfileNavHost
 import com.sryang.torang.viewmodel.ProfileViewModel
-import com.sryang.base.feed.compose.feed.Feeds
-import com.sryang.base.feed.uistate.FeedUiState
 
 
 @Composable
@@ -42,8 +41,6 @@ fun ProfileScreen(
                 profileImageServerUrl = profileImageUrl,
                 imageServerUrl = imageServerUrl,
                 ratingBar = {},
-                isLoaded = false,
-                isVisibleList = false,
                 isEmpty = false,
                 onBottom = {})
         },
@@ -64,8 +61,6 @@ fun ProfileScreen(
                 imageServerUrl = imageServerUrl,
                 profileImageServerUrl = profileImageUrl,
                 isEmpty = false,
-                isVisibleList = false,
-                isLoaded = false,
                 onBottom = {})
         },
         galleryScreen = { onNext, onClose ->
