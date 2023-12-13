@@ -39,13 +39,13 @@ class ProfileServiceModule {
             override suspend fun loadProfile(id: Int): ProfileUiState {
                 val result = profileRepository.loadProfile(id)
                 return ProfileUiState(
+                    id = result.userId,
                     profileUrl = result.profilePicUrl,
                     feedCount = result.post,
                     following = result.following,
                     follower = result.follower,
                     name = result.userName,
                     isLogin = true,
-                    id = 0,
                     isFollow = result.follow == 1
                 )
             }
@@ -59,7 +59,7 @@ class ProfileServiceModule {
                     follower = result.follower,
                     name = result.userName,
                     isLogin = true,
-                    id = 0
+                    id = result.userId
                 )
             }
 

@@ -5,6 +5,7 @@ import com.sryang.torang.compose.follow.Follow
 import com.sryang.torang.uistate.Feed
 import com.sryang.torang.viewmodel.FollowUiState
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
+import com.sryang.torang_repository.data.remote.response.RemoteFeed
 import com.sryang.torang_repository.data.remote.response.RemoteFollower
 import com.sryang.torang_repository.data.remote.response.RemoteUser
 
@@ -23,6 +24,25 @@ fun ReviewAndImageEntity.toFeed(): Feed {
         this.review.commentAmount,
         this.review.createDate,
         reviewImage = this.images.map { it.pictureUrl },
+        isLike = this.like != null,
+        isFavorite = this.favorite != null
+    )
+}
+
+fun RemoteFeed.toFeed(): Feed {
+    return Feed(
+        this.reviewId,
+        this.user.userId,
+        this.restaurant.restaurantId,
+        "",
+        "",
+        "",
+        this.contents,
+        this.rating,
+        this.like_amount,
+        this.comment_amount,
+        this.create_date,
+        reviewImage = this.pictures.map { com.sryang.torang.BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url },
         isLike = this.like != null,
         isFavorite = this.favorite != null
     )

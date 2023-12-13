@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import com.sarang.instagralleryModule.GalleryNavHost
 import com.sryang.base.feed.compose.feed.Feeds
+import com.sryang.torang.compose.FeedListScreen
 import com.sryang.torang.compose.edit.ProfileNavHost
 import com.sryang.torang.viewmodel.ProfileViewModel
 
@@ -18,50 +19,23 @@ fun ProfileScreen(
     imageServerUrl: String,
     onSetting: () -> Unit,
     navBackStackEntry: NavBackStackEntry?
-)
-{
+) {
     val uiState by profileViewModel.uiState.collectAsState()
 
     ProfileNavHost(
         profileViewModel = profileViewModel,
         onSetting = onSetting,
         favorite = {
-            Feeds(list = ArrayList(),
-                onProfile = {},
-                onLike = {},
-                onComment = {},
-                onShare = {},
-                onFavorite = {},
-                onMenu = { /*TODO*/ },
-                onName = { /*TODO*/ },
-                onRestaurant = { /*TODO*/ },
-                onImage = {},
-                onRefresh = { /*TODO*/ },
-                isRefreshing = false,
-                profileImageServerUrl = profileImageUrl,
-                imageServerUrl = imageServerUrl,
-                ratingBar = {},
-                isEmpty = false,
-                onBottom = {})
+
+            FeedListScreen(
+                userId = uiState.id
+            )
+
         },
         wantToGo = {
-            Feeds(list = ArrayList(),
-                onProfile = {},
-                onLike = {},
-                onComment = {},
-                onShare = {},
-                onFavorite = {},
-                onMenu = { /*TODO*/ },
-                onName = { /*TODO*/ },
-                onRestaurant = { /*TODO*/ },
-                onImage = {},
-                onRefresh = { /*TODO*/ },
-                isRefreshing = false,
-                ratingBar = {},
-                imageServerUrl = imageServerUrl,
-                profileImageServerUrl = profileImageUrl,
-                isEmpty = false,
-                onBottom = {})
+            FeedListScreen(
+                userId = uiState.id
+            )
         },
         galleryScreen = { onNext, onClose ->
             GalleryNavHost(onNext = onNext, onClose = { onClose.invoke() })
