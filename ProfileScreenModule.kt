@@ -15,10 +15,9 @@ import com.sryang.torang.viewmodel.ProfileViewModel
 @Composable
 fun ProfileScreen(
     profileViewModel: ProfileViewModel = hiltViewModel(),
-    profileImageUrl: String,
-    imageServerUrl: String,
     onSetting: () -> Unit,
-    navBackStackEntry: NavBackStackEntry?
+    navBackStackEntry: NavBackStackEntry?,
+    onClose: (() -> Unit)? = null
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
@@ -42,6 +41,6 @@ fun ProfileScreen(
         },
         isMyProfile = navBackStackEntry == null,
         id = navBackStackEntry?.arguments?.getString("id")?.toInt(),
-        profileImageServerUrl = profileImageUrl
+        onClose = onClose
     )
 }

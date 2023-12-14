@@ -1,6 +1,7 @@
 package com.sryang.myapplication.di.profile_di
 
 
+import com.sryang.torang.BuildConfig
 import com.sryang.torang.compose.follow.Follow
 import com.sryang.torang.uistate.Feed
 import com.sryang.torang.viewmodel.FollowUiState
@@ -23,7 +24,7 @@ fun ReviewAndImageEntity.toFeed(): Feed {
         this.review.likeAmount,
         this.review.commentAmount,
         this.review.createDate,
-        reviewImage = this.images.map { it.pictureUrl },
+        reviewImage = this.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
         isLike = this.like != null,
         isFavorite = this.favorite != null
     )
@@ -42,7 +43,7 @@ fun RemoteFeed.toFeed(): Feed {
         this.like_amount,
         this.comment_amount,
         this.create_date,
-        reviewImage = this.pictures.map { com.sryang.torang.BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url },
+        reviewImage = this.pictures.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url },
         isLike = this.like != null,
         isFavorite = this.favorite != null
     )
@@ -54,7 +55,7 @@ fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
 
 fun RemoteFollower.toFollow(): Follow {
     return Follow(
-        url = this.profilePicUrl,
+        url = BuildConfig.PROFILE_IMAGE_SERVER_URL + this.profilePicUrl,
         name = this.userName,
         nickname = this.userName,
         id = this.followerId,

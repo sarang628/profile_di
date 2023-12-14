@@ -1,5 +1,6 @@
 package com.sryang.myapplication.di.profile_di
 
+import com.sryang.torang.BuildConfig
 import com.sryang.torang.compose.follow.Follow
 import com.sryang.torang.uistate.Feed
 import com.sryang.torang.uistate.ProfileUiState
@@ -40,7 +41,7 @@ class ProfileServiceModule {
                 val result = profileRepository.loadProfile(id)
                 return ProfileUiState(
                     id = result.userId,
-                    profileUrl = result.profilePicUrl,
+                    profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
                     feedCount = result.post,
                     following = result.following,
                     follower = result.follower,
@@ -53,7 +54,7 @@ class ProfileServiceModule {
             override suspend fun loadProfileByToken(): ProfileUiState {
                 val result = profileRepository.loadProfileByToken()
                 return ProfileUiState(
-                    profileUrl = result.profilePicUrl,
+                    profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
                     feedCount = result.post,
                     following = result.following,
                     follower = result.follower,
