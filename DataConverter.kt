@@ -1,7 +1,7 @@
 package com.sryang.myapplication.di.profile_di
 
 
-import com.sryang.torang.BuildConfig
+import com.sarang.torang.BuildConfig
 import com.sryang.torang.compose.follow.Follow
 import com.sryang.torang.uistate.Feed
 import com.sryang.torang.viewmodel.FollowUiState
