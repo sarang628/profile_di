@@ -17,7 +17,8 @@ fun ProfileScreen(
     profileViewModel: ProfileViewModel = hiltViewModel(),
     onSetting: () -> Unit,
     navBackStackEntry: NavBackStackEntry?,
-    onClose: (() -> Unit)? = null
+    onClose: (() -> Unit)? = null,
+    onEmailLogin: () -> Unit
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
@@ -41,6 +42,7 @@ fun ProfileScreen(
         },
         isMyProfile = navBackStackEntry == null,
         id = navBackStackEntry?.arguments?.getString("id")?.toInt(),
-        onClose = onClose
+        onClose = onClose,
+        onEmailLogin = onEmailLogin
     )
 }
