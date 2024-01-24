@@ -7,9 +7,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import com.sarang.instagralleryModule.GalleryNavHost
 
-import com.sryang.torang.compose.FeedListScreen
-import com.sryang.torang.compose.edit.ProfileNavHost
-import com.sryang.torang.viewmodel.ProfileViewModel
+import com.sarang.torang.compose.FeedListScreen
+import com.sarang.torang.compose.edit.ProfileNavHost
+import com.sarang.torang.viewmodel.ProfileViewModel
 
 
 @Composable

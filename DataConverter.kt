@@ -1,10 +1,10 @@
-package com.sryang.myapplication.di.profile_di
+package com.sarang.torang.di.profile_di
 
 
 import com.sarang.torang.BuildConfig
-import com.sryang.torang.compose.follow.Follow
-import com.sryang.torang.uistate.Feed
-import com.sryang.torang.viewmodel.FollowUiState
+import com.sarang.torang.Feed
+import com.sarang.torang.compose.follow.Follow
+import com.sarang.torang.viewmodel.FollowUiState
 import com.sryang.torang_repository.data.entity.ReviewAndImageEntity
 import com.sryang.torang_repository.data.remote.response.RemoteFeed
 import com.sryang.torang_repository.data.remote.response.RemoteFollower
