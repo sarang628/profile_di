@@ -2,7 +2,7 @@ package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.Feed
 import com.sarang.torang.profile.GetFeedUseCase
-import com.sryang.torang_repository.api.ApiReview
+import com.sarang.torang.api.ApiReview
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
