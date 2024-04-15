@@ -1,4 +1,4 @@
-package com.sryang.myapplication.di.profile_di
+package com.sarang.torang.di.profile_di
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState

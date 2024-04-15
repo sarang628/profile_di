@@ -1,9 +1,6 @@
-package com.sryang.myapplication.di.profile_di
+package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.di.profile_di.toFeeds
-import com.sarang.torang.di.profile_di.toFollow
-import com.sarang.torang.di.profile_di.toFollowUiState
 import com.sarang.torang.compose.follow.Follow
 import com.sarang.torang.Feed
 import com.sarang.torang.ProfileUiState
