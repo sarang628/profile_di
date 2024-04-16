@@ -6,9 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import com.sarang.instagralleryModule.GalleryNavHost
+import com.sarang.torang.ProfileUiState
 
 import com.sarang.torang.compose.FeedListScreen
 import com.sarang.torang.compose.edit.ProfileNavHost
+import com.sarang.torang.uistate.FeedsUiState
 import com.sarang.torang.viewmodel.ProfileViewModel
 
 
@@ -26,16 +28,18 @@ fun ProfileScreen(
         profileViewModel = profileViewModel,
         onSetting = onSetting,
         favorite = {
-
-            FeedListScreen(
-                userId = uiState.id
-            )
-
+            if (uiState is ProfileUiState.Success) {
+                FeedListScreen(
+                    userId = (uiState as ProfileUiState.Success).id
+                )
+            }
         },
         wantToGo = {
-            FeedListScreen(
-                userId = uiState.id
-            )
+            if (uiState is ProfileUiState.Success) {
+                FeedListScreen(
+                    userId = (uiState as ProfileUiState.Success).id
+                )
+            }
         },
         galleryScreen = { onNext, onClose ->
             GalleryNavHost(onNext = onNext, onClose = { onClose.invoke() })
