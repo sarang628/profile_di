@@ -39,7 +39,7 @@ class ProfileServiceModule {
         return object : ProfileService {
             override suspend fun loadProfile(id: Int): ProfileUiState {
                 val result = profileRepository.loadProfile(id)
-                return ProfileUiState(
+                return ProfileUiState.Success(
                     id = result.userId,
                     profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
                     feedCount = result.post,
@@ -53,7 +53,7 @@ class ProfileServiceModule {
 
             override suspend fun loadProfileByToken(): ProfileUiState {
                 val result = profileRepository.loadProfileByToken()
-                return ProfileUiState(
+                return ProfileUiState.Success(
                     profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
                     feedCount = result.post,
                     following = result.following,
