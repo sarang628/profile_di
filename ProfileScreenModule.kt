@@ -19,7 +19,8 @@ fun ProfileScreen(
     onSetting: () -> Unit,
     navBackStackEntry: NavBackStackEntry?,
     onClose: (() -> Unit)? = null,
-    onEmailLogin: () -> Unit
+    onEmailLogin: () -> Unit,
+    onReview: ((Int) -> Unit)? = null
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
@@ -27,17 +28,19 @@ fun ProfileScreen(
         profileViewModel = profileViewModel,
         onSetting = onSetting,
         favorite = {
-            if(uiState is ProfileUiState.Success) {
-                FeedListScreen(
-                    userId = (uiState as ProfileUiState.Success).id
+            if (uiState is ProfileUiState.Success) {
+                FeedListScreen(/*favorite*/
+                    userId = (uiState as ProfileUiState.Success).id,
+                    onReview = onReview
                 )
             }
 
         },
         wantToGo = {
-            if(uiState is ProfileUiState.Success) {
-                FeedListScreen(
-                    userId = (uiState as ProfileUiState.Success).id
+            if (uiState is ProfileUiState.Success) {
+                FeedListScreen(/*wantToGo*/
+                    userId = (uiState as ProfileUiState.Success).id,
+                    onReview = onReview
                 )
             }
         },
