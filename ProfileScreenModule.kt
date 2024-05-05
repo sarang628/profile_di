@@ -72,7 +72,7 @@ fun MyProfileScreen(
     val uiState by profileViewModel.uiState.collectAsState()
 
     MyProfileNavHost(
-        profileViewModel = profileViewModel,
+        myProfileViewModel = profileViewModel,
         onSetting = onSetting,
         favorite = {
             if (uiState is ProfileUiState.Success) {
