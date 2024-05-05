@@ -97,8 +97,8 @@ fun MyProfileScreen(
     )
 }
 
-fun provideProfileScreen(navController : NavHostController) : @Composable () -> Unit = {
-    ProfileScreen(
+fun provideProfileScreen(navController: NavHostController): @Composable () -> Unit = {
+    MyProfileScreen(
         onSetting = { navController.navigate("settings") },
         navBackStackEntry = null,
         onClose = { navController.popBackStack() },
@@ -106,6 +106,9 @@ fun provideProfileScreen(navController : NavHostController) : @Composable () -> 
         onReview = {
             Log.d("__Main", "reviewId : ${it}")
             navController.navigate("myFeed/${it}")
+        },
+        onProfile = {
+            navController.navigate("profile/${it}")
         }
     )
 }
