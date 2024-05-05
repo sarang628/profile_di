@@ -9,7 +9,9 @@ import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.torang.ProfileUiState
 
 import com.sarang.torang.compose.FeedListScreen
-import com.sarang.torang.compose.edit.ProfileNavHost
+import com.sarang.torang.compose.profile.MyProfileNavHost
+import com.sarang.torang.compose.profile.ProfileNavHost
+import com.sarang.torang.viewmodel.MyProfileViewModel
 import com.sarang.torang.viewmodel.ProfileViewModel
 
 
@@ -17,14 +19,54 @@ import com.sarang.torang.viewmodel.ProfileViewModel
 fun ProfileScreen(
     profileViewModel: ProfileViewModel = hiltViewModel(),
     onSetting: () -> Unit,
-    navBackStackEntry: NavBackStackEntry?,
     onClose: (() -> Unit)? = null,
     onEmailLogin: () -> Unit,
-    onReview: ((Int) -> Unit)? = null
+    onReview: ((Int) -> Unit)? = null,
+    userId: Int,
+    onProfile: ((Int) -> Unit)? = null
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
     ProfileNavHost(
+        profileViewModel = profileViewModel,
+        onSetting = onSetting,
+        id = userId,
+        favorite = {
+            if (uiState is ProfileUiState.Success) {
+                FeedListScreen(/*favorite*/
+                    userId = (uiState as ProfileUiState.Success).id,
+                    onReview = onReview
+                )
+            }
+
+        },
+        wantToGo = {
+            if (uiState is ProfileUiState.Success) {
+                FeedListScreen(/*wantToGo*/
+                    userId = (uiState as ProfileUiState.Success).id,
+                    onReview = onReview
+                )
+            }
+        },
+        onClose = onClose,
+        onEmailLogin = onEmailLogin,
+        onProfile = onProfile
+    )
+}
+
+@Composable
+fun MyProfileScreen(
+    profileViewModel: MyProfileViewModel = hiltViewModel(),
+    onSetting: () -> Unit,
+    navBackStackEntry: NavBackStackEntry?,
+    onClose: (() -> Unit)? = null,
+    onEmailLogin: () -> Unit,
+    onReview: ((Int) -> Unit)? = null,
+    onProfile: ((Int) -> Unit)? = null
+) {
+    val uiState by profileViewModel.uiState.collectAsState()
+
+    MyProfileNavHost(
         profileViewModel = profileViewModel,
         onSetting = onSetting,
         favorite = {
@@ -47,9 +89,8 @@ fun ProfileScreen(
         galleryScreen = { onNext, onClose ->
             GalleryNavHost(onNext = onNext, onClose = { onClose.invoke() })
         },
-        isMyProfile = navBackStackEntry == null,
-        id = navBackStackEntry?.arguments?.getString("id")?.toInt(),
         onClose = onClose,
-        onEmailLogin = onEmailLogin
+        onEmailLogin = onEmailLogin,
+        onProfile = onProfile
     )
 }

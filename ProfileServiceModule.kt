@@ -6,9 +6,9 @@ import com.sarang.torang.Feed
 import com.sarang.torang.ProfileUiState
 import com.sarang.torang.profile.DeleteUseCase
 import com.sarang.torang.profile.FollowUseCase
-import com.sarang.torang.profile.GetFollowerUseCase
-import com.sarang.torang.profile.GetFollowingUseCase
-import com.sarang.torang.profile.GetProfileUseCase
+import com.sarang.torang.profile.GetMyFollowerUseCase
+import com.sarang.torang.profile.GetMyFollowingUseCase
+import com.sarang.torang.profile.GetMyProfileUseCase
 import com.sarang.torang.profile.IsLoginUseCase
 import com.sarang.torang.profile.ProfileService
 import com.sarang.torang.profile.UnFollowUseCase
@@ -88,80 +88,6 @@ class ProfileServiceModule {
             override val isLogin: Flow<Boolean>
                 get() = loggedInUserDao.getLoggedInUser().map { it != null }
 
-        }
-    }
-
-    @Provides
-    fun ProvidesGetFollowerUseCase(
-        followRepository: FollowRepository
-    ): GetFollowerUseCase {
-        return object : GetFollowerUseCase {
-            override suspend fun invoke(): List<Follow> {
-                return followRepository.getFollower().map {
-                    it.toFollow()
-                }.toList()
-            }
-        }
-    }
-
-    @Provides
-    fun ProvidesGetFollowingUseCase(
-        followRepository: FollowRepository
-    ): GetFollowingUseCase {
-        return object : GetFollowingUseCase {
-            override suspend fun invoke(): List<Follow> {
-                return followRepository.getFollowing().map {
-                    it.toFollow()
-                }.toList()
-            }
-        }
-    }
-
-    @Provides
-    fun ProvidesGetProfileUseCase(
-        apiProfile: ApiProfile,
-        sessionService: SessionService
-    ): GetProfileUseCase {
-        return object : GetProfileUseCase {
-            override suspend fun invoke(): FollowUiState {
-                sessionService.getToken()?.let {
-                    return apiProfile.getProfileByToken(it).toFollowUiState()
-                }
-                throw Exception("로그인을 해주세요.")
-            }
-        }
-    }
-
-    @Provides
-    fun ProvidesDeleteUseCase(
-        followRepository: FollowRepository
-    ): DeleteUseCase {
-        return object : DeleteUseCase {
-            override suspend fun invoke(id: Int): Boolean {
-                return followRepository.delete(id)
-            }
-        }
-    }
-
-    @Provides
-    fun ProvidesUnFollowUseCase(
-        followRepository: FollowRepository
-    ): UnFollowUseCase {
-        return object : UnFollowUseCase {
-            override suspend fun invoke(id: Int): Boolean {
-                return followRepository.unFollow(id)
-            }
-        }
-    }
-
-    @Provides
-    fun ProvidesFollowUseCase(
-        followRepository: FollowRepository
-    ): FollowUseCase {
-        return object : FollowUseCase {
-            override suspend fun invoke(id: Int): Boolean {
-                return followRepository.follow(id)
-            }
         }
     }
 }
