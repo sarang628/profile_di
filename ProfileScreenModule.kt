@@ -25,7 +25,8 @@ fun ProfileScreen(
     onEmailLogin: () -> Unit,
     onReview: ((Int) -> Unit)? = null,
     userId: Int,
-    onProfile: ((Int) -> Unit)? = null
+    onProfile: ((Int) -> Unit)? = null,
+    myFeed: @Composable (NavBackStackEntry) -> Unit,
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
@@ -52,7 +53,8 @@ fun ProfileScreen(
         },
         onClose = onClose,
         onEmailLogin = onEmailLogin,
-        onProfile = onProfile
+        onProfile = onProfile,
+        myFeed = myFeed
     )
 }
 
@@ -64,7 +66,8 @@ fun MyProfileScreen(
     onClose: (() -> Unit)? = null,
     onEmailLogin: () -> Unit,
     onReview: ((Int) -> Unit)? = null,
-    onProfile: ((Int) -> Unit)? = null
+    onProfile: ((Int) -> Unit)? = null,
+    myFeed: @Composable (NavBackStackEntry) -> Unit
 ) {
     val uiState by profileViewModel.uiState.collectAsState()
 
@@ -93,11 +96,15 @@ fun MyProfileScreen(
         },
         onClose = onClose,
         onEmailLogin = onEmailLogin,
-        onProfile = onProfile
+        onProfile = onProfile,
+        myFeed = myFeed
     )
 }
 
-fun provideProfileScreen(navController: NavHostController): @Composable () -> Unit = {
+fun provideProfileScreen(
+    navController: NavHostController,
+    myFeed: @Composable (NavBackStackEntry) -> Unit
+): @Composable () -> Unit = {
     MyProfileScreen(
         onSetting = { navController.navigate("settings") },
         navBackStackEntry = null,
@@ -109,6 +116,7 @@ fun provideProfileScreen(navController: NavHostController): @Composable () -> Un
         },
         onProfile = {
             navController.navigate("profile/${it}")
-        }
+        },
+        myFeed = myFeed
     )
 }
