@@ -1,24 +1,13 @@
 package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.compose.follow.Follow
 import com.sarang.torang.Feed
 import com.sarang.torang.ProfileUiState
-import com.sarang.torang.profile.DeleteUseCase
-import com.sarang.torang.profile.FollowUseCase
-import com.sarang.torang.profile.GetMyFollowerUseCase
-import com.sarang.torang.profile.GetMyFollowingUseCase
-import com.sarang.torang.profile.GetMyProfileUseCase
-import com.sarang.torang.profile.IsLoginUseCase
-import com.sarang.torang.profile.ProfileService
-import com.sarang.torang.profile.UnFollowUseCase
-import com.sarang.torang.viewmodel.FollowUiState
-import com.sarang.torang.api.ApiProfile
+import com.sarang.torang.usecase.IsLoginUseCase
+import com.sarang.torang.usecase.ProfileService
 import com.sarang.torang.data.dao.LoggedInUserDao
 import com.sarang.torang.di.repository.repository.impl.ProfileRepositoryImpl
 import com.sarang.torang.repository.EditProfileRepository
-import com.sarang.torang.repository.FollowRepository
-import com.sarang.torang.session.SessionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
