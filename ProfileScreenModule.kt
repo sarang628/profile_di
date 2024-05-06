@@ -4,19 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import com.sarang.instagralleryModule.GalleryNavHost
-import com.sarang.torang.compose.MyProfileScreenNavHost
+import com.sarang.torang.compose._MyProfileScreenNavHost
 import com.sarang.torang.viewmodel.MyProfileViewModel
 
 
 @Composable
-fun MyProfileScreen(
+fun MyProfileScreenNavHost(
     profileViewModel: MyProfileViewModel = hiltViewModel(),
     onSetting: () -> Unit,
     onClose: (() -> Unit)? = null,
     onEmailLogin: () -> Unit,
-    myFeed: @Composable (NavBackStackEntry) -> Unit
+    myFeed: @Composable (NavBackStackEntry) -> Unit,
+    onReview: ((Int) -> Unit)? = null,
 ) {
-    MyProfileScreenNavHost(
+    _MyProfileScreenNavHost(
         myProfileViewModel = profileViewModel,
         onSetting = onSetting,
         galleryScreen = { onNext, onClose ->
@@ -24,6 +25,7 @@ fun MyProfileScreen(
         },
         onClose = onClose,
         onEmailLogin = onEmailLogin,
-        myFeed = myFeed
+        myFeed = myFeed,
+        onReview = onReview
     )
 }
