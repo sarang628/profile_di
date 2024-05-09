@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.torang.compose._MyProfileScreenNavHost
+import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.viewmodel.MyProfileViewModel
 import com.sarang.torang.viewmodel.ProfileViewModel
 
@@ -18,7 +19,7 @@ fun MyProfileScreenNavHost(
     onClose: (() -> Unit)? = null,
     onEmailLogin: () -> Unit,
     myFeed: @Composable (NavBackStackEntry) -> Unit,
-    onReview: ((Int) -> Unit)? = null
+    onReview: ((Int) -> Unit)? = null,
 ) {
     _MyProfileScreenNavHost(
         navController = navController,
@@ -29,6 +30,7 @@ fun MyProfileScreenNavHost(
         onClose = onClose,
         onEmailLogin = onEmailLogin,
         myFeed = myFeed,
-        onReview = onReview
+        onReview = onReview,
+        image = provideTorangAsyncImage()
     )
 }
