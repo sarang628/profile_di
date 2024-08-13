@@ -6,9 +6,9 @@ import com.sarang.torang.Feed
 import com.sarang.torang.compose.follow.Follow
 import com.sarang.torang.viewmodel.FollowUiState
 import com.sarang.torang.data.entity.ReviewAndImageEntity
-import com.sarang.torang.data.remote.response.RemoteFeed
-import com.sarang.torang.data.remote.response.RemoteFollower
-import com.sarang.torang.data.remote.response.RemoteUser
+import com.sarang.torang.data.remote.response.FeedApiModel
+import com.sarang.torang.data.remote.response.FollowerApiModel
+import com.sarang.torang.data.remote.response.UserApiModel
 
 
 fun ReviewAndImageEntity.toFeed(): Feed {
@@ -30,7 +30,7 @@ fun ReviewAndImageEntity.toFeed(): Feed {
     )
 }
 
-fun RemoteFeed.toFeed(): Feed {
+fun FeedApiModel.toFeed(): Feed {
     return Feed(
         this.reviewId,
         this.user.userId,
@@ -53,7 +53,7 @@ fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
     return this.map { it.toFeed() }
 }
 
-fun RemoteFollower.toFollow(): Follow {
+fun FollowerApiModel.toFollow(): Follow {
     return Follow(
         url = BuildConfig.PROFILE_IMAGE_SERVER_URL + this.profilePicUrl,
         name = this.userName,
@@ -63,7 +63,7 @@ fun RemoteFollower.toFollow(): Follow {
     )
 }
 
-fun RemoteUser.toFollowUiState(): FollowUiState {
+fun UserApiModel.toFollowUiState(): FollowUiState {
     return FollowUiState(
         name = this.userName, following = this.following, follower = this.follower, subscription = 0
     )
