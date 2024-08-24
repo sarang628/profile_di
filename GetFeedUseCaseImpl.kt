@@ -21,9 +21,7 @@ class GetFeedUseCaseImpl {
     ): GetMyFeedUseCase {
         return object : GetMyFeedUseCase {
             override suspend fun invoke(userId: Int): List<Feed> {
-                Log.d("__GetFeedUseCaseImpl", "invoke() : ${userId}")
                 val result = apiFeed.getMyReviewsByUserId(userId)
-                Log.d("__GetFeedUseCaseImpl", "apiFeed.getMyReviewsByUserId : ${userId}")
                 myFeedDao.insertAll(result.map { it.toMyFeedEntity() })
                 Log.d("__GetFeedUseCaseImpl", "myFeedDao.insertAll : ${result.size} items")
                 return result.map { it.toFeed() }
