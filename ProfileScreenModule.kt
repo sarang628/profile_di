@@ -1,5 +1,7 @@
 package com.sarang.torang.di.profile_di
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
@@ -12,6 +14,7 @@ import com.sarang.torang.viewmodel.MyProfileViewModel
 import com.sarang.torang.viewmodel.ProfileViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun MyProfileScreenNavHost(
     navController: NavHostController,
@@ -26,7 +29,10 @@ fun MyProfileScreenNavHost(
         navController = navController,
         onSetting = onSetting,
         galleryScreen = { onNext, onClose ->
-            GalleryNavHost(onNext = onNext, onClose = { onClose.invoke() })
+            GalleryNavHost(
+                onNext = onNext,
+                onClose = { onClose.invoke() },
+                onBack = { onClose.invoke() })
         },
         onClose = onClose,
         onEmailLogin = onEmailLogin,
