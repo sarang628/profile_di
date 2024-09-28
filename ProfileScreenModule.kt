@@ -23,6 +23,7 @@ fun MyProfileScreenNavHost(
     onEmailLogin: () -> Unit,
     myFeed: @Composable (NavBackStackEntry) -> Unit,
     onReview: ((Int) -> Unit)? = null,
+    onMessage: (Int) -> Unit,
 ) {
     _MyProfileScreenNavHost(
         navController = navController,
@@ -37,6 +38,7 @@ fun MyProfileScreenNavHost(
         onEmailLogin = onEmailLogin,
         myFeed = myFeed,
         onReview = onReview,
-        image = provideTorangAsyncImage()
+        image = provideTorangAsyncImage(),
+        onMessage = onMessage
     )
 }
