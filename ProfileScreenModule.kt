@@ -3,15 +3,11 @@ package com.sarang.torang.di.profile_di
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.sarang.instagralleryModule.GalleryNavHost
+import com.sarang.instagralleryModule.compose.GalleryNavHost
 import com.sarang.torang.compose._MyProfileScreenNavHost
 import com.sarang.torang.di.image.provideTorangAsyncImage
-import com.sarang.torang.viewmodel.MyProfileViewModel
-import com.sarang.torang.viewmodel.ProfileViewModel
 
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
