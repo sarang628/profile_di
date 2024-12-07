@@ -1,17 +1,17 @@
 package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.compose.follow.Follow
-import com.sarang.torang.usecase.DeleteUseCase
-import com.sarang.torang.usecase.FollowUseCase
-import com.sarang.torang.usecase.GetMyFollowerUseCase
-import com.sarang.torang.usecase.GetMyFollowingUseCase
-import com.sarang.torang.usecase.GetMyProfileUseCase
-import com.sarang.torang.usecase.UnFollowUseCase
+import com.sarang.torang.usecase.profile.DeleteUseCase
+import com.sarang.torang.usecase.profile.FollowUseCase
+import com.sarang.torang.usecase.profile.GetMyFollowerUseCase
+import com.sarang.torang.usecase.profile.GetMyFollowingUseCase
+import com.sarang.torang.usecase.profile.GetMyProfileUseCase
+import com.sarang.torang.usecase.profile.UnFollowUseCase
 import com.sarang.torang.viewmodel.FollowUiState
 import com.sarang.torang.api.ApiProfile
-import com.sarang.torang.usecase.GetFollowerUseCase
-import com.sarang.torang.usecase.GetFollowingUseCase
-import com.sarang.torang.usecase.GetProfileUseCase
+import com.sarang.torang.usecase.profile.GetFollowerUseCase
+import com.sarang.torang.usecase.profile.GetFollowingUseCase
+import com.sarang.torang.usecase.profile.GetProfileUseCase
 import com.sarang.torang.repository.FollowRepository
 import com.sarang.torang.session.SessionService
 import dagger.Module

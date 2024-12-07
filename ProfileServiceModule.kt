@@ -3,8 +3,8 @@ package com.sarang.torang.di.profile_di
 import com.sarang.torang.BuildConfig
 import com.sarang.torang.Feed
 import com.sarang.torang.ProfileUiState
-import com.sarang.torang.usecase.IsLoginUseCase
-import com.sarang.torang.usecase.ProfileService
+import com.sarang.torang.usecase.profile.IsLoginUseCase
+import com.sarang.torang.usecase.profile.ProfileService
 import com.sarang.torang.data.dao.LoggedInUserDao
 import com.sarang.torang.di.repository.repository.impl.ProfileRepositoryImpl
 import com.sarang.torang.repository.EditProfileRepository
