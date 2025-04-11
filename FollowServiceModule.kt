@@ -9,11 +9,13 @@ import com.sarang.torang.usecase.profile.GetMyProfileUseCase
 import com.sarang.torang.usecase.profile.UnFollowUseCase
 import com.sarang.torang.viewmodel.FollowUiState
 import com.sarang.torang.api.ApiProfile
+import com.sarang.torang.repository.ChatRepository
 import com.sarang.torang.usecase.profile.GetFollowerUseCase
 import com.sarang.torang.usecase.profile.GetFollowingUseCase
 import com.sarang.torang.usecase.profile.GetProfileUseCase
 import com.sarang.torang.repository.FollowRepository
 import com.sarang.torang.session.SessionService
+import com.sarang.torang.usecase.profile.FindOrCreateChatRoomByUserIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -129,6 +131,18 @@ class FollowServiceModule {
         return object : FollowUseCase {
             override suspend fun invoke(id: Int): Boolean {
                 return followRepository.follow(id)
+            }
+        }
+    }
+
+    @Provides
+    fun provideFindOrCreateChatRoomByUserIdUseCase(
+        chatRepository: ChatRepository
+    ): FindOrCreateChatRoomByUserIdUseCase {
+        return object : FindOrCreateChatRoomByUserIdUseCase {
+            override suspend fun invoke(userId: Int): Int {
+                val result = chatRepository.getUserOrCreateRoomByUserId(userId)
+                return result.chatRoomEntity.roomId
             }
         }
     }
