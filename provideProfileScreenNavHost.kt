@@ -29,7 +29,10 @@ internal fun provideProfileScreenNavHost(
                 commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
             )
         },
-        image = provideTorangAsyncImage(),
+        image = { a, b, c, d, e ->
+            provideTorangAsyncImage()
+                .invoke(a, b, c, d, e, null)
+        },
         onMessage = onMessage
     )
 }

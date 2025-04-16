@@ -12,6 +12,9 @@ internal fun provideEditProfileScreen(rootNavController: RootNavController): @Co
             onBack = {
                 rootNavController.popBackStack()
             },
-            image = provideTorangAsyncImage()
+            image = { a, b, c, d, e ->
+                provideTorangAsyncImage()
+                    .invoke(a, b, c, d, e, null)
+            },
         )
     }

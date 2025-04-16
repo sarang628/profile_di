@@ -33,7 +33,10 @@ fun MyProfileScreenNavHost(
         onEmailLogin = onEmailLogin,
         myFeed = myFeed,
         onReview = onReview,
-        image = provideTorangAsyncImage(),
+        image = { a, b, c, d, e ->
+            provideTorangAsyncImage()
+                .invoke(a, b, c, d, e, null)
+        },
         onMessage = onMessage
     )
 }
