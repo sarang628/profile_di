@@ -45,10 +45,7 @@ internal fun provideProfileScreen(
                     commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
                 )
             },
-            image = { a, b, c, d, e ->
-                provideTorangAsyncImage()
-                    .invoke(a, b, c, d, e, null)
-            },
+            image = provideTorangAsyncImage(),
             onMessage = { ChatActivity.go(context, it) }
         )
     } else {
