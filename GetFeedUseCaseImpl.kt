@@ -5,7 +5,7 @@ import com.sarang.torang.Feed
 import com.sarang.torang.usecase.profile.GetMyFeedUseCase
 import com.sarang.torang.api.ApiReview
 import com.sarang.torang.data.dao.MyFeedDao
-import com.sarang.torang.data.entity.toMyFeedEntity
+import com.sarang.torang.di.repository.repository.impl.toMyFeedEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
