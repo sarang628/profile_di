@@ -5,7 +5,7 @@ import com.sarang.torang.BuildConfig
 import com.sarang.torang.Feed
 import com.sarang.torang.compose.follow.Follow
 import com.sarang.torang.viewmodel.FollowUiState
-import com.sarang.torang.data.entity.ReviewAndImageEntity
+import com.sarang.torang.core.database.model.feed.ReviewAndImageEntity
 import com.sarang.torang.data.remote.response.FeedApiModel
 import com.sarang.torang.data.remote.response.FollowerApiModel
 import com.sarang.torang.data.remote.response.UserApiModel
