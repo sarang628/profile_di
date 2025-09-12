@@ -2,10 +2,10 @@ package com.sarang.torang.di.profile_di
 
 import android.util.Log
 import com.sarang.torang.Feed
-import com.sarang.torang.usecase.profile.GetMyFeedUseCase
 import com.sarang.torang.api.ApiReview
 import com.sarang.torang.core.database.dao.MyFeedDao
-import com.sarang.torang.di.repository.repository.impl.toMyFeedEntity
+import com.sarang.torang.di.repository.toMyFeedEntity
+import com.sarang.torang.usecase.profile.GetMyFeedUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
