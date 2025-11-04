@@ -142,7 +142,7 @@ class FollowServiceModule {
         return object : FindOrCreateChatRoomByUserIdUseCase {
             override suspend fun invoke(userId: Int): Int {
                 val result = chatRepository.getUserOrCreateRoomByUserId(userId)
-                return result.chatRoomEntity.roomId
+                return result.roomId
             }
         }
     }
