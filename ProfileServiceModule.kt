@@ -75,7 +75,7 @@ class ProfileServiceModule {
     ): IsLoginUseCase {
         return object : IsLoginUseCase {
             override val isLogin: Flow<Boolean>
-                get() = loggedInUserDao.getLoggedInUser().map { it != null }
+                get() = loggedInUserDao.getLoggedInUserFlow().map { it != null }
 
         }
     }
