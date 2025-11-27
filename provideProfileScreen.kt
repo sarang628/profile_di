@@ -10,7 +10,7 @@ import com.sarang.torang.compose.ProfileScreenNavHost
 import com.sarang.torang.di.chat_di.ChatActivity
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
-import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
+import com.sarang.torang.di.comment_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.video.provideVideoPlayer
 
 /**
