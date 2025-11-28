@@ -12,8 +12,7 @@ import com.sarang.torang.di.comment_di.provideCommentBottomDialogSheet
 internal fun provideProfileScreenNavHost(
     feedNavController: NavHostController,
     rootNavController: RootNavController,
-    onMessage: (Int) -> Unit,
-    videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,
+    onMessage: (Int) -> Unit
 ): @Composable (NavBackStackEntry) -> Unit = { navBackStackEntry ->
     ProfileScreenNavHost(
         id = navBackStackEntry.arguments?.getString("id")?.toInt(),
@@ -21,13 +20,9 @@ internal fun provideProfileScreenNavHost(
         onEmailLogin = { rootNavController.emailLogin() },
         onReview = { feedNavController.navigate("myFeed/${it}") },
         myFeed = {
-            ProvideMyFeedScreen(
-                rootNavController = rootNavController,
-                navController = feedNavController,
-                navBackStackEntry = it,
-                videoPlayer = videoPlayer,
-                commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
-            )
+            ProvideMyFeedScreen(rootNavController = rootNavController,
+                                navController = feedNavController,
+                                navBackStackEntry = it,)
         },
         image = provideTorangAsyncImage(),
         onMessage = onMessage

@@ -25,28 +25,17 @@ internal fun provideProfileScreen(
     val context = LocalContext.current
     if (userId != null) {
         ProfileScreenNavHost(
+            id            = userId,
             navController = profileNavController,
-            id = userId,
-            onClose = {
-                if (onClose != null) {
-                    onClose.invoke()
-                } else {
-                    rootNavController.popBackStack()
-                }
-            },
-            onEmailLogin = { rootNavController.emailLogin() },
-            onReview = { profileNavController.navigate("myFeed/${it}") },
-            myFeed = {
-                ProvideMyFeedScreen(
-                    rootNavController = rootNavController,
-                    navController = profileNavController,
-                    navBackStackEntry = it,
-                    videoPlayer = provideVideoPlayer(),
-                    commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
-                )
-            },
-            image = provideTorangAsyncImage(),
-            onMessage = { ChatActivity.go(context, it) }
+            onClose       = { if (onClose != null) { onClose.invoke() }
+                              else { rootNavController.popBackStack() } },
+            onEmailLogin  = { rootNavController.emailLogin() },
+            onReview      = { profileNavController.navigate("myFeed/${it}") },
+            myFeed        = { ProvideMyFeedScreen(rootNavController = rootNavController,
+                                                  navController = profileNavController,
+                                                  navBackStackEntry = it) },
+            image         = provideTorangAsyncImage(),
+            onMessage     = { ChatActivity.go(context, it) }
         )
     } else {
         Text(text = "사용자 정보가 없습니다.")
