@@ -37,13 +37,9 @@ internal fun provideProfileScreen(
             onEmailLogin = { rootNavController.emailLogin() },
             onReview = { profileNavController.navigate("myFeed/${it}") },
             myFeed = {
-                ProvideMyFeedScreen(
-                    rootNavController = rootNavController,
-                    navController = profileNavController,
-                    navBackStackEntry = it,
-                    videoPlayer = provideVideoPlayer(),
-                    commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
-                )
+                ProvideMyFeedScreen(rootNavController = rootNavController,
+                                    navController = profileNavController,
+                                    navBackStackEntry = it)
             },
             image = provideTorangAsyncImage(),
             onMessage = { ChatActivity.go(context, it) }
