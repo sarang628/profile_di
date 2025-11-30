@@ -64,7 +64,8 @@ fun FollowerApiModel.toFollow(): Follow {
 }
 
 fun UserApiModel.toFollowUiState(): FollowUiState {
-    return FollowUiState(
-        name = this.userName, following = this.following, follower = this.follower, subscription = 0
-    )
+    return FollowUiState(name = this.userName,
+                         following = this.following.toString(),
+                         follower = this.follower.toString(),
+                         subscription = this.post.toString())
 }

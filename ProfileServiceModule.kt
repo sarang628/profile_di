@@ -31,11 +31,10 @@ class ProfileServiceModule {
                 return ProfileUiState.Success(
                     id = result.userId,
                     profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
-                    feedCount = result.post,
-                    following = result.following,
-                    follower = result.follower,
+                    feedCount = result.post.toString(),
+                    following = result.following.toString(),
+                    follower = result.follower.toString(),
                     name = result.userName,
-                    isLogin = true,
                     isFollow = result.follow == 1
                 )
             }
@@ -44,11 +43,10 @@ class ProfileServiceModule {
                 val result = profileRepository.loadProfileByToken()
                 return ProfileUiState.Success(
                     profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
-                    feedCount = result.post,
-                    following = result.following,
-                    follower = result.follower,
+                    feedCount = result.post.toString(),
+                    following = result.following.toString(),
+                    follower = result.follower.toString(),
                     name = result.userName,
-                    isLogin = true,
                     id = result.userId
                 )
             }
