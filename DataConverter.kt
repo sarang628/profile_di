@@ -24,7 +24,7 @@ fun ReviewAndImageEntity.toFeed(): Feed {
         this.review.likeAmount,
         this.review.commentAmount,
         this.review.createDate,
-        reviewImage = this.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
+        reviewImages = this.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
         isLike = this.like != null,
         isFavorite = this.favorite != null
     )
@@ -43,7 +43,7 @@ fun FeedApiModel.toFeed(): Feed {
         this.like_amount,
         this.comment_amount,
         this.create_date,
-        reviewImage = this.pictures.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url },
+        reviewImages = this.pictures.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url },
         isLike = this.like != null,
         isFavorite = this.favorite != null
     )
