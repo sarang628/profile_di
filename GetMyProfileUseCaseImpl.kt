@@ -25,8 +25,8 @@ class GetMyProfileUseCaseImpl {
                                     userDao         : UserDao): GetMyProfileUseCase {
         return object : GetMyProfileUseCase {
             override fun invoke(): Flow<MyProfileUiState.Success> {
-                return loggedInUserDao.getLoggedInUserFlow().map {
-                    it?.userId?.let {
+                return loggedInUserDao.getLoggedInUserFlow().map { loggedInUserEntity ->
+                    loggedInUserEntity?.userId?.let {
                         userDao.findById(it)?.let { user ->
                             MyProfileUiState.Success(name           = user.userName,
                                                      following      = user.following,
