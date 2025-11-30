@@ -1,5 +1,6 @@
 package com.sarang.torang.di.profile_di
 
+import android.util.Log
 import com.sarang.torang.Feed
 import com.sarang.torang.api.ApiReview
 import com.sarang.torang.core.database.dao.LoggedInUserDao
@@ -19,7 +20,11 @@ class GetFeedUseCaseImpl {
     fun providesGetFeedUseCase(myFeedDao: MyFeedDao): GetMyFeedUseCase {
         return object : GetMyFeedUseCase {
             override fun invoke(): Flow<List<Feed>> {
-                return myFeedDao.getAllFeedWithUser().map { it.toFeeds() }
+                return myFeedDao.getAllFeedWithUser().map {
+                    val result = it.toFeeds()
+                    Log.d("__providesGetFeedUseCase", "$result")
+                    result
+                }
             }
         }
     }

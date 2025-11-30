@@ -1,5 +1,7 @@
 package com.sarang.torang.di.profile_di
 
+import com.sarang.torang.BuildConfig
+import com.sarang.torang.MyProfileUiState
 import com.sarang.torang.api.ApiProfile
 import com.sarang.torang.core.database.dao.LoggedInUserDao
 import com.sarang.torang.core.database.dao.UserDao
@@ -22,19 +24,20 @@ class GetMyProfileUseCaseImpl {
     fun providesGetMyProfileUseCase(loggedInUserDao : LoggedInUserDao,
                                     userDao         : UserDao): GetMyProfileUseCase {
         return object : GetMyProfileUseCase {
-            override fun invoke(): Flow<FollowUiState> {
+            override fun invoke(): Flow<MyProfileUiState.Success> {
                 return loggedInUserDao.getLoggedInUserFlow().map {
                     it?.userId?.let {
-                        userDao.findById(it)?.let {
-                            FollowUiState( name = it.userName,
-                                           following = it.following,
-                                           follower = it.followers,
-                                           subscription = it.reviewCount)
+                        userDao.findById(it)?.let { user ->
+                            MyProfileUiState.Success(name           = user.userName,
+                                                     following      = user.following,
+                                                     follower       = user.followers,
+                                                     feedCount      = user.reviewCount,
+                                                     profileUrl     = BuildConfig.PROFILE_IMAGE_SERVER_URL + user.profilePicUrl)
                         } ?: run {
-                            FollowUiState()
+                            MyProfileUiState.Success()
                         }
                     } ?: run {
-                        FollowUiState()
+                        MyProfileUiState.Success()
                     }
                 }
             }

@@ -2,10 +2,15 @@ package com.sarang.torang.di.profile_di
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.LocalProfileImage
 import com.sarang.torang.compose.edit.EditProfileScreen
 import com.sarang.torang.di.image.provideTorangAsyncImage
+import com.sarang.torang.viewmodel.MyProfileViewModel
+import com.sarang.torang.viewmodel.ProfileViewModel
 
 internal fun provideEditProfileScreen(rootNavController: RootNavController): @Composable () -> Unit =
     {
@@ -15,7 +20,10 @@ internal fun provideEditProfileScreen(rootNavController: RootNavController): @Co
             it.errorIconSize,
             it.progressSize,
             it.contentScale)}) {
+            val profileViewModel = hiltViewModel<MyProfileViewModel>()
+            val uiState by profileViewModel.uiState.collectAsStateWithLifecycle()
         EditProfileScreen(
+            uiState = uiState,
             onEditImage = { rootNavController.editProfileImage() },
             onBack = {
                 rootNavController.popBackStack()
