@@ -24,21 +24,20 @@ class GetMyProfileUseCaseImpl {
     fun providesGetMyProfileUseCase(loggedInUserDao : LoggedInUserDao,
                                     userDao         : UserDao): GetMyProfileUseCase {
         return object : GetMyProfileUseCase {
-            override fun invoke(): Flow<MyProfileUiState.Success> {
+            override fun invoke(): Flow<MyProfileUiState> {
                 return loggedInUserDao.getLoggedInUserFlow().map { loggedInUserEntity ->
                     loggedInUserEntity?.userId?.let {
-                        userDao.findById(it)?.let { user ->
-                            MyProfileUiState.Success(name           = user.userName,
-                                                     following      = user.following,
-                                                     follower       = user.followers,
-                                                     feedCount      = user.reviewCount,
-                                                     profileUrl     = BuildConfig.PROFILE_IMAGE_SERVER_URL + user.profilePicUrl)
-                        } ?: run {
-                            MyProfileUiState.Success()
-                        }
-                    } ?: run {
-                        MyProfileUiState.Success()
-                    }
+                        userDao.findById(it)?.let { user -> MyProfileUiState.Success(name           = user.userName,
+                                                                                             following      = user.following,
+                                                                                             follower       = user.followers,
+                                                                                             feedCount      = user.reviewCount,
+                                                                                             profileUrl     = BuildConfig.PROFILE_IMAGE_SERVER_URL + user.profilePicUrl)
+                                                          } ?: run {
+                                                                      MyProfileUiState.NeedLogin
+                                                                   }
+                                                    } ?: run {
+                                                        MyProfileUiState.NeedLogin
+                                                    }
                 }
             }
         }
