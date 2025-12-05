@@ -6,11 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sarang.torang.RootNavController
-import com.sarang.torang.compose.LocalProfileImage
+import com.sarang.torang.compose.profile.LocalProfileImage
 import com.sarang.torang.compose.edit.EditProfileScreen
 import com.sarang.torang.di.image.provideTorangAsyncImage
-import com.sarang.torang.viewmodel.MyProfileViewModel
-import com.sarang.torang.viewmodel.ProfileViewModel
+import com.sarang.torang.viewmodel.profile.MyProfileViewModel
 
 internal fun provideEditProfileScreen(rootNavController: RootNavController): @Composable () -> Unit =
     {

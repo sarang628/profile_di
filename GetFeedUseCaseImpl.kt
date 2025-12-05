@@ -1,6 +1,6 @@
 package com.sarang.torang.di.profile_di
 
-import com.sarang.torang.Feed
+import com.sarang.torang.data.profile.Feed
 import com.sarang.torang.core.database.dao.MyFeedDao
 import com.sarang.torang.usecase.profile.GetMyFeedUseCase
 import dagger.Module

@@ -2,7 +2,7 @@ package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.api.ApiProfile
 import com.sarang.torang.usecase.profile.GetProfileUseCase
-import com.sarang.torang.viewmodel.FollowUiState
+import com.sarang.torang.viewmodel.profile.FollowUiState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

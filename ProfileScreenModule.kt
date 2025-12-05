@@ -4,11 +4,10 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.sarang.torang.compose.LocalProfileImage
-import com.sarang.torang.compose._MyProfileScreenNavHost
+import com.sarang.torang.compose.profile.LocalProfileImage
+import com.sarang.torang.compose.profile._MyProfileScreenNavHost
 import com.sarang.torang.di.image.provideTorangAsyncImage
 
 
