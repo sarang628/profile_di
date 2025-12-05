@@ -6,51 +6,38 @@ import com.sarang.torang.data.profile.Feed
 import com.sarang.torang.compose.follow.Follow
 import com.sarang.torang.viewmodel.profile.FollowUiState
 import com.sarang.torang.core.database.model.feed.ReviewAndImageEntity
+import com.sarang.torang.data.profile.FeedListItemUIState
 import com.sarang.torang.data.remote.response.FeedApiModel
 import com.sarang.torang.data.remote.response.FollowerApiModel
 import com.sarang.torang.data.remote.response.UserApiModel
 
 
-fun ReviewAndImageEntity.toFeed(): Feed {
-    return Feed(
-        this.review.reviewId,
-        this.review.userId,
-        this.review.restaurantId,
-        this.review.userName,
-        this.review.restaurantName,
-        this.review.profilePicUrl,
-        this.review.contents,
-        this.review.rating,
-        this.review.likeAmount,
-        this.review.commentAmount,
-        this.review.createDate,
-        reviewImages = this.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
-        isLike = this.like != null,
-        isFavorite = this.favorite != null
-    )
+fun ReviewAndImageEntity.toFeedListItemUIState(): Feed {
+    return Feed(reviewId        = this.review.reviewId,
+                userId          = this.review.userId,
+                restaurantId    = this.review.restaurantId,
+                userName        = this.review.userName,
+                restaurantName  = this.review.restaurantName,
+                profilePicUrl   = this.review.profilePicUrl,
+                contents        = this.review.contents,
+                rating          = this.review.rating,
+                likeAmount      = this.review.likeAmount,
+                commentAmount   = this.review.commentAmount,
+                createDate      = this.review.createDate,
+                reviewImages    = this.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
+                isLike          = this.like != null,
+                isFavorite      = this.favorite != null)
 }
 
-fun FeedApiModel.toFeed(): Feed {
-    return Feed(
-        this.reviewId,
-        this.user.userId,
-        this.restaurant.restaurantId,
-        "",
-        "",
-        "",
-        this.contents,
-        this.rating,
-        this.like_amount,
-        this.comment_amount,
-        this.create_date,
-        reviewImages = this.pictures.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url },
-        isLike = this.like != null,
-        isFavorite = this.favorite != null
-    )
+fun FeedApiModel.toFeedListItemUIState(): FeedListItemUIState {
+    return FeedListItemUIState(reviewId = this.reviewId,
+                               url      = BuildConfig.REVIEW_IMAGE_SERVER_URL + this.url)
 }
+
+val FeedApiModel.url : String get() = if(this.pictures.isEmpty()) "" else this.pictures[0].picture_url
 
 fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
-    return this.map { it.toFeed() }
+    return this.map { it.toFeedListItemUIState() }
 }
 
 fun FollowerApiModel.toFollow(): Follow {

@@ -1,8 +1,8 @@
 package com.sarang.torang.di.profile_di
 
 import android.util.Log
-import com.sarang.torang.data.profile.Feed
 import com.sarang.torang.api.ApiReview
+import com.sarang.torang.data.profile.FeedListItemUIState
 import com.sarang.torang.usecase.profile.GetFeedByUserIdUseCase
 import dagger.Module
 import dagger.Provides
@@ -17,10 +17,10 @@ class GetFeedByUserIdUseCaseImpl {
         apiFeed: ApiReview,
     ): GetFeedByUserIdUseCase {
         return object : GetFeedByUserIdUseCase {
-            override suspend fun invoke(userId: Int): List<Feed> {
+            override suspend fun invoke(userId: Int): List<FeedListItemUIState> {
                 val result = apiFeed.getMyReviewsByUserId(userId)
                 Log.d("__GetFeedUseCaseImpl", "myFeedDao.insertAll : ${result.size} items")
-                return result.map { it.toFeed() }
+                return result.map { it.toFeedListItemUIState() }
             }
         }
     }
