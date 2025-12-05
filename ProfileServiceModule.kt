@@ -6,8 +6,10 @@ import com.sarang.torang.ProfileUiState
 import com.sarang.torang.usecase.profile.IsLoginUseCase
 import com.sarang.torang.usecase.profile.ProfileService
 import com.sarang.torang.core.database.dao.LoggedInUserDao
-import com.sarang.torang.di.repository.ProfileRepositoryImpl
 import com.sarang.torang.repository.EditProfileRepository
+import com.sarang.torang.repository.FavoriteRepository
+import com.sarang.torang.repository.FeedRepository
+import com.sarang.torang.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,12 +24,13 @@ import kotlinx.coroutines.flow.map
 class ProfileServiceModule {
     @Provides
     fun provideProfileService(
-        profileRepository: ProfileRepositoryImpl,
-        editProfileRepository: EditProfileRepository
+        editProfileRepository: EditProfileRepository,
+        userRepository: UserRepository,
+        feedRepository: FeedRepository
     ): ProfileService {
         return object : ProfileService {
             override suspend fun loadProfile(id: Int): ProfileUiState {
-                val result = profileRepository.loadProfile(id)
+                val result = userRepository.findById(id)
                 return ProfileUiState.Success(
                     id = result.userId,
                     profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
@@ -40,7 +43,7 @@ class ProfileServiceModule {
             }
 
             override suspend fun loadProfileByToken(): ProfileUiState {
-                val result = profileRepository.loadProfileByToken()
+                val result = userRepository.findByToken()
                 return ProfileUiState.Success(
                     profileUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + result.profilePicUrl,
                     feedCount = result.post.toString(),
@@ -51,13 +54,9 @@ class ProfileServiceModule {
                 )
             }
 
-            override suspend fun getFavorites(): kotlinx.coroutines.flow.Flow<List<Feed>> {
-                return MutableStateFlow<List<Feed>>(ArrayList()).combineTransform(
-                    profileRepository.getMyFavorite(
-                        1
-                    )
-                ) { feed, feedEntity ->
-                    emit(feedEntity.toFeeds())
+            override suspend fun getFavorites(): Flow<List<Feed>> {
+                return feedRepository.findFavoriteByUserIdFlow().map {
+                    it.toFeeds()
                 }
             }
 

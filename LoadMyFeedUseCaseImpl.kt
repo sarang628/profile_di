@@ -1,7 +1,7 @@
 package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.core.database.dao.LoggedInUserDao
-import com.sarang.torang.repository.ProfileRepository
+import com.sarang.torang.repository.FeedRepository
 import com.sarang.torang.usecase.profile.LoadMyFeedUseCase
 import dagger.Module
 import dagger.Provides
@@ -14,13 +14,13 @@ class LoadMyFeedUseCaseImpl {
     @Provides
     fun provideLoadMyFeedUseCase(
         loggedInUserDao : LoggedInUserDao,
-        profileRepository: ProfileRepository
+        feedRepository: FeedRepository
     ): LoadMyFeedUseCase {
         return object : LoadMyFeedUseCase {
             override suspend fun invoke() {
                 loggedInUserDao.getLoggedInUser()?.let {
                     it.userId.let {
-                        profileRepository.loadMyFeed(it)
+                        feedRepository.loadByUserId(it)
                     }
                 }
             }
