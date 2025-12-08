@@ -6,6 +6,7 @@ import com.sarang.torang.compose.profile.ProfileUiState
 import com.sarang.torang.usecase.profile.IsLoginUseCase
 import com.sarang.torang.usecase.profile.ProfileService
 import com.sarang.torang.core.database.dao.LoggedInUserDao
+import com.sarang.torang.di.profile_di.toFeeds
 import com.sarang.torang.repository.EditProfileRepository
 import com.sarang.torang.repository.FeedRepository
 import com.sarang.torang.repository.UserRepository
@@ -14,6 +15,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
 @Module
@@ -52,9 +54,10 @@ class ProfileServiceModule {
             }
 
             override suspend fun getFavorites(): Flow<List<Feed>> {
-                return feedRepository.findFavoriteByUserIdFlow().map {
+                return MutableStateFlow(listOf())
+                /*return feedRepository.findByFavoriteFlow().map {
                     it.toFeeds()
-                }
+                }*/
             }
 
             override suspend fun updateProfile(uri: String) {
