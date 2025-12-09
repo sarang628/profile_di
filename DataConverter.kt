@@ -2,14 +2,14 @@ package com.sarang.torang.di.profile_di
 
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.data.profile.Feed
 import com.sarang.torang.compose.follow.Follow
-import com.sarang.torang.viewmodel.profile.FollowUiState
 import com.sarang.torang.core.database.model.feed.ReviewAndImageEntity
 import com.sarang.torang.data.profile.FeedListItemUIState
 import com.sarang.torang.data.remote.response.FeedApiModel
 import com.sarang.torang.data.remote.response.FollowerApiModel
 import com.sarang.torang.data.remote.response.UserApiModel
+import com.sarang.torang.data.profile.Feed
+import com.sarang.torang.viewmodel.profile.FollowUiState
 
 
 fun ReviewAndImageEntity.toFeedListItemUIState(): Feed {
