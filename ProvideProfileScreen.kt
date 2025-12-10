@@ -22,7 +22,7 @@ fun ProvideProfileScreen(
             id = id,
             onClose = { },
             onEmailLogin = { },
-            onReview = { rootNavController.review(it) },
+            onReview = { rootNavController.myReview(it) },
             onMessage = { }
         )
     }
