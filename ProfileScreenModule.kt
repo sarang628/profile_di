@@ -2,6 +2,8 @@ package com.sarang.torang.di.profile_di
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
@@ -21,7 +23,8 @@ fun MyProfileScreenNavHost(
     onEmailLogin                : () -> Unit        = {},
     onReview                    : (Int) -> Unit     = {},
     onMessage                   : (Int) -> Unit     = {},
-    myProfileBackgroundColor    : Color             = Color.Transparent
+    myProfileBackgroundColor    : Color             = Color.Transparent,
+    contentWindowInsets         : WindowInsets      = ScaffoldDefaults.contentWindowInsets
 ) {
     CompositionLocalProvider(LocalProfileImage provides {provideTorangAsyncImage().invoke(
         it.modifier,
