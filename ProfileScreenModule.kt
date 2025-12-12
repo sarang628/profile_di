@@ -45,7 +45,8 @@ fun MyProfileScreenNavHost(
             onEmailLogin = onEmailLogin,
             onReview = onReview,
             onMessage = onMessage,
-            myProfileBackgroundColor = myProfileBackgroundColor
+            myProfileBackgroundColor = myProfileBackgroundColor,
+            contentWindowInsets = contentWindowInsets
         )
     }
 }
