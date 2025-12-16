@@ -17,7 +17,7 @@ class GetFeedUseCaseImpl {
     fun providesGetFeedUseCase(myFeedDao: MyFeedDao): GetMyFeedUseCase {
         return object : GetMyFeedUseCase {
             override fun invoke(): Flow<List<Feed>> {
-                return myFeedDao.getAllFeedWithUser().map {
+                return myFeedDao.findAllFlow().map {
                     val result = it.toFeeds()
                     result
                 }
