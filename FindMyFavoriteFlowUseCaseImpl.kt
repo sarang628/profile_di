@@ -1,7 +1,7 @@
 package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.repository.FeedRepository
+import com.sarang.torang.repository.feed.FeedFlowRepository
 import com.sarang.torang.usecase.profile.FineMyFavoriteFlowUseCase
 import com.sarang.torang.viewmodel.profile.MyFavoriteItemUiState
 import dagger.Module
@@ -15,10 +15,10 @@ import kotlinx.coroutines.flow.map
 @InstallIn(SingletonComponent::class)
 class FindMyFavoriteFlowUseCaseImpl {
     @Provides
-    fun providesFineMyFavoriteFlowUseCase(feedRepository: FeedRepository): FineMyFavoriteFlowUseCase {
+    fun providesFineMyFavoriteFlowUseCase(feedFlowRepository: FeedFlowRepository): FineMyFavoriteFlowUseCase {
         return object : FineMyFavoriteFlowUseCase {
             override fun invoke(): Flow<List<MyFavoriteItemUiState>> {
-                return feedRepository.findByFavoriteFlow().map {
+                return feedFlowRepository.findByFavoriteFlow().map {
                     it.map {
                         MyFavoriteItemUiState(
                             reviewId = it.reviewId ?: 0,

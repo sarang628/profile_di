@@ -1,15 +1,14 @@
 package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.data.profile.Feed
 import com.sarang.torang.compose.profile.ProfileUiState
+import com.sarang.torang.core.database.dao.LoggedInUserDao
+import com.sarang.torang.data.profile.Feed
+import com.sarang.torang.repository.EditProfileRepository
+import com.sarang.torang.repository.UserRepository
+import com.sarang.torang.repository.feed.FeedRepository
 import com.sarang.torang.usecase.profile.IsLoginUseCase
 import com.sarang.torang.usecase.profile.ProfileService
-import com.sarang.torang.core.database.dao.LoggedInUserDao
-import com.sarang.torang.di.profile_di.toFeeds
-import com.sarang.torang.repository.EditProfileRepository
-import com.sarang.torang.repository.FeedRepository
-import com.sarang.torang.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

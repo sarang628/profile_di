@@ -1,10 +1,8 @@
 package com.sarang.torang.di.profile_di
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.repository.FeedRepository
-import com.sarang.torang.usecase.profile.FineMyFavoriteFlowUseCase
+import com.sarang.torang.repository.feed.FeedFlowRepository
 import com.sarang.torang.usecase.profile.FineMyLikeFlowUseCase
-import com.sarang.torang.viewmodel.profile.MyFavoriteItemUiState
 import com.sarang.torang.viewmodel.profile.MyLikeListViewUiState
 import dagger.Module
 import dagger.Provides
@@ -17,10 +15,10 @@ import kotlinx.coroutines.flow.map
 @InstallIn(SingletonComponent::class)
 class FindMyLikeFlowUseCaseImpl {
     @Provides
-    fun providesFineMyLikeFlowUseCase(feedRepository: FeedRepository): FineMyLikeFlowUseCase {
+    fun providesFineMyLikeFlowUseCase(feedFlowRepository: FeedFlowRepository): FineMyLikeFlowUseCase {
         return object : FineMyLikeFlowUseCase {
             override fun invoke(): Flow<List<MyLikeListViewUiState>> {
-                return feedRepository.findByLikeFlow().map {
+                return feedFlowRepository.findByLikeFlow().map {
                     it.map {
                         MyLikeListViewUiState(
                             reviewId = it.reviewId ?: 0,

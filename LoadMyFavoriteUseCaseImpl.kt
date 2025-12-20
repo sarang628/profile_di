@@ -1,9 +1,7 @@
 package com.sarang.torang.di.profile_di
 
-import com.sarang.torang.core.database.dao.LoggedInUserDao
-import com.sarang.torang.repository.FeedRepository
+import com.sarang.torang.repository.feed.FeedLoadRepository
 import com.sarang.torang.usecase.profile.LoadMyFavoriteUseCase
-import com.sarang.torang.usecase.profile.LoadMyFeedUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,11 +12,11 @@ import dagger.hilt.components.SingletonComponent
 class LoadMyFavoriteUseCaseImpl {
     @Provides
     fun provideLoadMyFavoriteUseCase(
-        feedRepository: FeedRepository
+        feedLoadRepository: FeedLoadRepository
     ): LoadMyFavoriteUseCase {
         return object : LoadMyFavoriteUseCase {
             override suspend fun invoke() {
-                feedRepository.loadByFavorite()
+                feedLoadRepository.loadByFavorite()
             }
         }
     }
