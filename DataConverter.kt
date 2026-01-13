@@ -2,6 +2,7 @@ package com.sarang.torang.di.profile_di
 
 
 import com.sarang.torang.BuildConfig
+import com.sarang.torang.Follower
 import com.sarang.torang.compose.follow.Follow
 import com.sarang.torang.core.database.model.feed.ReviewAndImageEntity
 import com.sarang.torang.data.profile.FeedListItemUIState
@@ -40,7 +41,7 @@ fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
     return this.map { it.toFeedListItemUIState() }
 }
 
-fun FollowerApiModel.toFollow(): Follow {
+fun Follower.toFollow(): Follow {
     return Follow(
         url = BuildConfig.PROFILE_IMAGE_SERVER_URL + this.profilePicUrl,
         name = this.userName,
