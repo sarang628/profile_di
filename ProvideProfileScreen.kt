@@ -20,7 +20,7 @@ fun ProvideProfileScreen(
         it.contentScale)}) {
         ProfileScreenNavHost(
             id = id,
-            onClose = { },
+            onClose = { rootNavController.popBackStack() },
             onEmailLogin = { },
             onReview = { rootNavController.review(it) },
             onMessage = { }
