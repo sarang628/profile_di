@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.compose.profile.LocalProfileImage
 import com.sarang.torang.compose.profile._MyProfileScreenNavHost
+import com.sarang.torang.di.image.TorangAsyncImageData
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.viewmodel.profile.MyFeedListViewModel
 
@@ -30,11 +31,14 @@ fun MyProfileScreenNavHost(
     contentWindowInsets         : WindowInsets          = ScaffoldDefaults.contentWindowInsets
 ) {
     CompositionLocalProvider(LocalProfileImage provides {provideTorangAsyncImage().invoke(
-        it.modifier,
-        it.url,
-        it.errorIconSize,
-        it.progressSize,
-        it.contentScale)}) {
+        TorangAsyncImageData(
+            it.modifier,
+            it.url,
+            it.errorIconSize,
+            it.progressSize,
+            it.contentScale
+        )
+    )}) {
         _MyProfileScreenNavHost(
             navController               = navController,
             feedListViewModel           = feedListViewModel,

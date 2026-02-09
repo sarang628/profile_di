@@ -8,17 +8,19 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.profile.LocalProfileImage
 import com.sarang.torang.compose.edit.EditProfileScreen
+import com.sarang.torang.di.image.TorangAsyncImageData
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.viewmodel.profile.MyProfileViewModel
 
 internal fun provideEditProfileScreen(rootNavController: RootNavController): @Composable () -> Unit =
     {
         CompositionLocalProvider(LocalProfileImage provides {provideTorangAsyncImage().invoke(
+            TorangAsyncImageData(
             it.modifier,
             it.url,
             it.errorIconSize,
             it.progressSize,
-            it.contentScale)}) {
+            it.contentScale))}) {
             val profileViewModel = hiltViewModel<MyProfileViewModel>()
             val uiState by profileViewModel.uiState.collectAsStateWithLifecycle()
         EditProfileScreen(

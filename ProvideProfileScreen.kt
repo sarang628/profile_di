@@ -5,6 +5,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.profile.LocalProfileImage
 import com.sarang.torang.compose.profile.ProfileScreenNavHost
+import com.sarang.torang.di.image.TorangAsyncImageData
 import com.sarang.torang.di.image.provideTorangAsyncImage
 
 @Composable
@@ -13,11 +14,12 @@ fun ProvideProfileScreen(
     rootNavController: RootNavController = RootNavController()
 ) {
     CompositionLocalProvider(LocalProfileImage provides {provideTorangAsyncImage().invoke(
+        TorangAsyncImageData(
         it.modifier,
         it.url,
         it.errorIconSize,
         it.progressSize,
-        it.contentScale)}) {
+        it.contentScale))}) {
         ProfileScreenNavHost(
             id = id,
             onClose = { rootNavController.popBackStack() },
