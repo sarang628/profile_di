@@ -35,7 +35,7 @@ fun FeedApiModel.toFeedListItemUIState(): FeedListItemUIState {
                                url      = BuildConfig.REVIEW_IMAGE_SERVER_URL + this.url)
 }
 
-val FeedApiModel.url : String get() = if(this.pictures.isEmpty()) "" else this.pictures[0].picture_url
+val FeedApiModel.url : String get() = if(this.pictures.isEmpty()) "" else this.pictures[0].picture_url ?: ""
 
 fun List<ReviewAndImageEntity>.toFeeds(): List<Feed> {
     return this.map { it.toFeedListItemUIState() }
